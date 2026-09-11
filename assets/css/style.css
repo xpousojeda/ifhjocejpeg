@@ -498,9 +498,6 @@ body.nav-open {
   align-items: center;
 }
 
-.home-intro__copy h2 {
-  max-width: 10ch;
-}
 
 .home-intro__copy p:not(.eyebrow) {
   font-size: clamp(1.1rem, 1rem + 0.5vw, 1.45rem);
@@ -565,10 +562,6 @@ body.nav-open {
   transform: rotate(7deg);
 }
 
-.doodle--flower {
-  width: clamp(5rem, 12vw, 9rem);
-  color: var(--dusty-pink);
-}
 
 .doodle--moon {
   width: clamp(5rem, 10vw, 8rem);
@@ -580,27 +573,12 @@ body.nav-open {
   color: var(--faded-orange);
 }
 
-/* Inner page heroes */
-.page-hero {
-  min-height: clamp(26rem, 58dvh, 44rem);
-  display: grid;
-  align-items: end;
-  gap: 2rem;
-  padding-block: clamp(5rem, 10vw, 9rem) clamp(3rem, 6vw, 5rem);
-}
-
-.page-hero > div {
-  max-width: 68rem;
-}
-
-.page-hero h1,
 .booking-intro h1,
 .about-layout h1,
 .contact-layout h1 {
   margin-bottom: 1.2rem;
 }
 
-.page-hero p:not(.eyebrow),
 .booking-intro p:not(.eyebrow),
 .contact-layout__copy > p {
   font-size: clamp(1.1rem, 1rem + 0.45vw, 1.42rem);
@@ -1174,10 +1152,6 @@ body.nav-open {
     transform: rotate(2.2deg);
   }
 
-  .page-hero {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-
   .portfolio-masonry {
     columns: 3;
   }
@@ -1357,4 +1331,43 @@ body.nav-open {
   .cursor-glow {
     display: none;
   }
+}
+
+/* Copy-light refinements */
+.home-intro__line {
+  max-width: none;
+  margin: 0 0 1rem;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3vw, 2.7rem);
+  line-height: 1.2;
+}
+
+.page-portfolio .portfolio-section {
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.contact-links--direct {
+  gap: 1.1rem;
+  margin-top: clamp(1.75rem, 4vw, 3rem);
+}
+
+.contact-links--direct p {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  font-family: var(--body);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+}
+
+.contact-links--direct span {
+  color: var(--moss);
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.contact-links--direct a {
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
 }
