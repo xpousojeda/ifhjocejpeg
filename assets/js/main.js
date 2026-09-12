@@ -180,10 +180,12 @@ function initLightbox() {
     if (!triggers.length) return;
     currentIndex = (index + triggers.length) % triggers.length;
     const source = triggers[currentIndex].querySelector('img');
-    image.src = source.src;
+    image.src = source.currentSrc || source.src;
+    image.srcset = source.srcset;
+    image.sizes = 'min(90vw, 1500px)';
     image.alt = source.alt;
-    image.width = source.naturalWidth || source.width;
-    image.height = source.naturalHeight || source.height;
+    image.width = source.width;
+    image.height = source.height;
     caption.textContent = source.alt;
   }
 
