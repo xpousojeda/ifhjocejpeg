@@ -459,15 +459,14 @@ body.nav-open {
   bottom: 1.3rem;
   z-index: 8;
   display: flex;
-  max-width: calc(100% - 9rem);
+  max-width: calc(100% - 8rem);
   transform: translateX(-50%);
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.22rem;
+  flex-wrap: nowrap;
 }
 
 .hero-carousel__dot {
-  width: 44px;
+  width: clamp(30px, 8vw, 44px);
   height: 44px;
   display: grid;
   place-items: center;
