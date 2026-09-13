@@ -867,14 +867,20 @@ body.nav-open {
   align-items: flex-start;
   gap: 0.75rem;
   max-width: 60rem;
+  cursor: pointer;
 }
 
 .checkbox-label input {
   flex: 0 0 auto;
   width: 22px;
   height: 22px;
+  min-height: 0;
   margin-top: 0.2rem;
+  padding: 0;
+  appearance: auto;
+  -webkit-appearance: checkbox;
   accent-color: var(--moss);
+  cursor: pointer;
 }
 
 .honeypot {
