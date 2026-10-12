@@ -151,8 +151,72 @@ function initPortfolioFilters() {
           }, 320);
         }
       });
+
+      gallery.dispatchEvent(new Event('portfolio:layout'));
+      window.setTimeout(() => {
+        gallery.dispatchEvent(new Event('portfolio:layout'));
+      }, 340);
     });
   });
+}
+
+function initPortfolioMasonry() {
+  const gallery = document.querySelector('[data-gallery]');
+  if (!gallery) return;
+
+  const cards = [...gallery.querySelectorAll('.gallery-card')];
+  let layoutFrame = null;
+
+  function layout() {
+    const styles = window.getComputedStyle(gallery);
+    const rowHeight = Number.parseFloat(styles.gridAutoRows);
+    const rowGap = Number.parseFloat(styles.rowGap);
+
+    if (!Number.isFinite(rowHeight) || rowHeight <= 0) return;
+
+    cards.forEach((card) => {
+      card.style.gridRowEnd = 'auto';
+    });
+
+    cards.forEach((card) => {
+      if (card.hidden) return;
+
+      const content = card.querySelector('.gallery-card__button');
+      if (!content) return;
+
+      const height = content.getBoundingClientRect().height;
+      const span = Math.max(
+        1,
+        Math.ceil((height + rowGap) / (rowHeight + rowGap))
+      );
+
+      card.style.gridRowEnd = `span ${span}`;
+    });
+  }
+
+  function scheduleLayout() {
+    if (layoutFrame !== null) {
+      window.cancelAnimationFrame(layoutFrame);
+    }
+
+    layoutFrame = window.requestAnimationFrame(() => {
+      layoutFrame = null;
+      layout();
+    });
+  }
+
+  gallery.classList.add('is-masonry');
+  gallery.addEventListener('portfolio:layout', scheduleLayout);
+  window.addEventListener('resize', scheduleLayout, { passive: true });
+
+  gallery.querySelectorAll('img').forEach((image) => {
+    if (!image.complete) {
+      image.addEventListener('load', scheduleLayout, { once: true });
+    }
+  });
+
+  document.fonts?.ready.then(scheduleLayout);
+  scheduleLayout();
 }
 
 function initLightbox() {
@@ -328,6 +392,7 @@ function initCursorFollowers() {
 initNavigation();
 initCarousel();
 initPortfolioFilters();
+initPortfolioMasonry();
 initLightbox();
 initReveal();
 initParallax();
