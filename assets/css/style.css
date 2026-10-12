@@ -1,14 +1,16 @@
 :root {
-  --cream: #f2e6d0;
-  --muted-gold: #c4a04a;
-  --moss: #6b7a4f;
-  --faded-orange: #d08653;
-  --dusty-pink: #d3a29b;
-  --deep-brown: #3a2a1f;
-  --dream-purple: #6e5a8c;
-  --paper: #ead8bc;
-  --ink-soft: #594638;
-  --shadow: rgba(58, 42, 31, 0.2);
+  --cream: #f8e9dc;
+  --muted-gold: #dda968;
+  --moss: #d58a9d;
+  --faded-orange: #d77b5d;
+  --dusty-pink: #d49aae;
+  --deep-brown: #2a081e;
+  --dream-purple: #efafd0;
+  --paper: #f0d3bd;
+  --ink-soft: #ead0ca;
+  --shadow: rgba(25, 0, 16, 0.4);
+  --surface: rgba(42, 8, 30, 0.82);
+  --line: rgba(248, 233, 220, 0.34);
   --shell: min(92vw, 1600px);
   --section-space: clamp(4rem, 8vw, 9rem);
   --display: "Yeseva One", Georgia, serif;
@@ -21,22 +23,41 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--cream);
+  background: var(--deep-brown);
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   margin: 0;
   min-width: 0;
   overflow-x: hidden;
-  color: var(--deep-brown);
-  background:
-    radial-gradient(circle at 12% 8%, rgba(211, 162, 155, 0.28), transparent 28rem),
-    radial-gradient(circle at 88% 28%, rgba(196, 160, 74, 0.14), transparent 26rem),
-    var(--cream);
+  color: var(--cream);
+  background: var(--deep-brown);
   font-family: var(--body);
   font-size: clamp(1rem, 0.96rem + 0.18vw, 1.12rem);
   line-height: 1.65;
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+body::before,
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  background-image: url("../../images/background/site-background-720.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+body::after {
+  z-index: -1;
+  background: rgba(30, 3, 22, 0.48);
 }
 
 img,
@@ -75,7 +96,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px dashed var(--dream-purple);
+  outline: 2px dashed var(--muted-gold);
   outline-offset: 4px;
 }
 
@@ -164,7 +185,7 @@ p {
   gap: 0.55rem;
   align-items: center;
   min-height: 44px;
-  color: var(--deep-brown);
+  color: var(--cream);
   font-weight: 600;
 }
 
@@ -202,7 +223,7 @@ p {
   position: relative;
   z-index: 200;
   padding-top: calc(0.75rem + env(safe-area-inset-top));
-  color: var(--deep-brown);
+  color: var(--cream);
 }
 
 .site-header__inner {
@@ -229,9 +250,9 @@ p {
   width: 48px;
   height: 48px;
   place-items: center;
-  border: 1px solid rgba(58, 42, 31, 0.45);
+  border: 1px solid var(--line);
   border-radius: 50%;
-  background: rgba(242, 230, 208, 0.72);
+  background: var(--surface);
   cursor: pointer;
 }
 
@@ -239,7 +260,7 @@ p {
   position: absolute;
   width: 20px;
   height: 1px;
-  background: var(--deep-brown);
+  background: var(--cream);
   transition: transform 240ms ease;
 }
 
@@ -268,10 +289,7 @@ p {
   justify-content: center;
   gap: 0.45rem;
   padding: calc(6rem + env(safe-area-inset-top)) max(7vw, 1.25rem) calc(3rem + env(safe-area-inset-bottom));
-  background:
-    radial-gradient(circle at 80% 20%, rgba(211, 162, 155, 0.32), transparent 38%),
-    radial-gradient(circle at 15% 80%, rgba(107, 122, 79, 0.2), transparent 34%),
-    var(--cream);
+  background: rgba(42, 8, 30, 0.97);
   transform: translateX(102%);
   visibility: hidden;
   transition: transform 420ms cubic-bezier(.2, .8, .2, 1), visibility 0s linear 420ms;
@@ -540,9 +558,10 @@ body.nav-open {
 .filter-chip {
   min-height: 44px;
   padding: 0.52rem 1rem;
-  border: 1px solid rgba(58, 42, 31, 0.42);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(242, 230, 208, 0.65);
+  color: var(--cream);
+  background: var(--surface);
   cursor: pointer;
   transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
 }
@@ -556,8 +575,8 @@ body.nav-open {
 }
 
 .filter-chip.is-active {
-  color: var(--cream);
-  background: var(--moss);
+  color: var(--deep-brown);
+  background: var(--paper);
 }
 
 .portfolio-masonry {
@@ -689,7 +708,7 @@ body.nav-open {
   max-width: 42rem;
   margin: 0 auto;
   padding: clamp(0.7rem, 2vw, 1.2rem);
-  background: #dec7a5;
+  background: #bd6678;
   box-shadow: 0 22px 50px var(--shadow);
   transform: rotate(-1.5deg);
 }
@@ -860,7 +879,7 @@ body.nav-open {
   min-height: calc(100dvh - 9rem);
   display: grid;
   align-items: center;
-  gap: clamp(3rem, 8vw, 8rem);
+  gap: 2rem;
 }
 
 .contact-layout__copy {
@@ -883,29 +902,9 @@ body.nav-open {
   overflow-wrap: anywhere;
 }
 
-.contact-layout__art {
-  min-height: 22rem;
-  display: grid;
-  place-items: center;
-}
-
-.hanging-object {
-  width: min(72vw, 23rem);
-  animation: hanging-drift 6.5s ease-in-out infinite alternate;
-}
-
-.hanging-object svg {
-  width: 100%;
-  fill: rgba(211, 162, 155, 0.17);
-  stroke: var(--dream-purple);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 /* Footer */
 .site-footer {
-  border-top: 1px solid rgba(58, 42, 31, 0.2);
+  border-top: 1px solid var(--line);
   padding-block: clamp(2rem, 4vw, 3.4rem);
 }
 
@@ -963,11 +962,6 @@ body.nav-open {
   display: none;
 }
 
-@keyframes hanging-drift {
-  from { transform: rotate(-2deg) translateY(-4px); }
-  to { transform: rotate(2.3deg) translateY(7px); }
-}
-
 /* 480px */
 @media (min-width: 30rem) {
   .home-collage {
@@ -988,6 +982,10 @@ body.nav-open {
 
 /* 768px */
 @media (min-width: 48rem) {
+  body::before {
+    background-image: url("../../images/background/site-background-1600.jpg");
+  }
+
   .site-header {
     padding-top: calc(1rem + env(safe-area-inset-top));
   }
@@ -1103,10 +1101,6 @@ body.nav-open {
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .contact-layout {
-    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
-  }
-
   .site-footer__inner {
     grid-template-columns: 1fr auto auto;
     align-items: center;
@@ -1187,12 +1181,13 @@ body.nav-open {
 
   .button:hover {
     transform: translate(-2px, -2px) rotate(-0.5deg);
-    box-shadow: 7px 8px 0 rgba(58, 42, 31, 0.16);
-    background: #e4cfad;
+    box-shadow: 7px 8px 0 rgba(25, 0, 16, 0.28);
+    background: #f7dfca;
   }
 
   .filter-chip:hover {
-    background: rgba(107, 122, 79, 0.17);
+    color: var(--deep-brown);
+    background: var(--dusty-pink);
   }
 
   .photo-frame:hover img,
@@ -1253,8 +1248,7 @@ body.nav-open {
     transform: none;
   }
 
-  .parallax-soft,
-  .hanging-object {
+  .parallax-soft {
     transform: none;
   }
 
