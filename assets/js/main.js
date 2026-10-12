@@ -241,9 +241,9 @@ function initLightbox() {
     if (!triggers.length) return;
     currentIndex = (index + triggers.length) % triggers.length;
     const source = triggers[currentIndex].querySelector('img');
-    image.src = source.currentSrc || source.src;
-    image.srcset = source.srcset;
-    image.sizes = 'min(90vw, 1500px)';
+    image.removeAttribute('srcset');
+    image.removeAttribute('sizes');
+    image.src = source.src.replace(/-720\.jpg(?:\?.*)?$/i, '-1600.jpg');
     image.alt = source.alt;
     image.width = source.width;
     image.height = source.height;
