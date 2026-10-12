@@ -617,10 +617,6 @@ body.nav-open {
 .gallery-card__button img {
   width: 100%;
   height: auto;
-  transform: scale(1);
-  transform-origin: center;
-  backface-visibility: hidden;
-  transition: transform 420ms ease;
 }
 
 .lightbox[hidden] {
@@ -1193,10 +1189,6 @@ body.nav-open {
   .photo-frame:hover img,
   .portrait-card:hover img {
     transform: scale(1.025);
-  }
-
-  .gallery-card__button:hover img {
-    transform: scale(1.035);
   }
 
   .cursor-orbit {
