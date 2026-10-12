@@ -580,20 +580,26 @@ body.nav-open {
 }
 
 .portfolio-masonry {
-  columns: 1;
-  column-gap: clamp(1rem, 2.5vw, 2.4rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1rem, 2.5vw, 2.4rem);
+}
+
+.portfolio-masonry.is-masonry {
+  grid-auto-rows: 8px;
+  row-gap: 8px;
 }
 
 .gallery-card {
-  break-inside: avoid;
-  margin: 0 0 clamp(1rem, 2.5vw, 2.4rem);
-  transition: opacity 320ms ease, transform 320ms ease;
+  min-width: 0;
+  margin: 0;
+  transition: opacity 220ms ease;
 }
 
 
 .gallery-card.is-filtering-out {
   opacity: 0;
-  transform: scale(0.985);
 }
 
 .gallery-card[hidden] {
@@ -602,7 +608,6 @@ body.nav-open {
 
 .gallery-card__button {
   position: relative;
-  isolation: isolate;
   width: 100%;
   min-height: 44px;
   display: block;
@@ -928,10 +933,6 @@ body.nav-open {
   object-fit: contain;
 }
 
-.portfolio-masonry {
-  column-fill: balance;
-}
-
 .gallery-card__button {
   line-height: 0;
 }
@@ -972,7 +973,7 @@ body.nav-open {
   .photo-frame--four { transform: rotate(-1.7deg) translateY(1.6rem); }
 
   .portfolio-masonry {
-    columns: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1073,7 +1074,7 @@ body.nav-open {
   }
 
   .portfolio-masonry {
-    columns: 3;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .portrait-card__sparkle {
@@ -1135,7 +1136,7 @@ body.nav-open {
   }
 
   .portfolio-masonry {
-    columns: 4;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
 }
@@ -1151,8 +1152,7 @@ body.nav-open {
   }
 
   .portfolio-masonry {
-    columns: 4;
-    column-gap: 2.2rem;
+    gap: 2.2rem;
   }
 }
 
