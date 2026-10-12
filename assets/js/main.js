@@ -175,16 +175,30 @@ function initPortfolioMasonry() {
     if (!Number.isFinite(rowHeight) || rowHeight <= 0) return;
 
     cards.forEach((card) => {
-      card.style.gridRowEnd = 'auto';
-    });
-
-    cards.forEach((card) => {
       if (card.hidden) return;
 
       const content = card.querySelector('.gallery-card__button');
-      if (!content) return;
+      const thumbnail = content?.querySelector('img');
+      if (!content || !thumbnail) return;
 
-      const height = content.getBoundingClientRect().height;
+      const sourceWidth = Number(thumbnail.getAttribute('width'));
+      const sourceHeight = Number(thumbnail.getAttribute('height'));
+      const renderedWidth = content.getBoundingClientRect().width;
+
+      if (
+        !Number.isFinite(sourceWidth) ||
+        !Number.isFinite(sourceHeight) ||
+        sourceWidth <= 0 ||
+        sourceHeight <= 0 ||
+        renderedWidth <= 0
+      ) {
+        return;
+      }
+
+      const height = Math.max(
+        44,
+        renderedWidth * (sourceHeight / sourceWidth)
+      );
       const span = Math.max(
         1,
         Math.ceil((height + rowGap) / (rowHeight + rowGap))
@@ -208,14 +222,6 @@ function initPortfolioMasonry() {
   gallery.classList.add('is-masonry');
   gallery.addEventListener('portfolio:layout', scheduleLayout);
   window.addEventListener('resize', scheduleLayout, { passive: true });
-
-  gallery.querySelectorAll('img').forEach((image) => {
-    if (!image.complete) {
-      image.addEventListener('load', scheduleLayout, { once: true });
-    }
-  });
-
-  document.fonts?.ready.then(scheduleLayout);
   scheduleLayout();
 }
 
