@@ -231,6 +231,7 @@ function initLightbox() {
   if (!lightbox || !gallery) return;
 
   const image = lightbox.querySelector('[data-lightbox-image]');
+  const caption = lightbox.querySelector('[data-lightbox-caption]');
   const close = lightbox.querySelector('[data-lightbox-close]');
   const prev = lightbox.querySelector('[data-lightbox-prev]');
   const next = lightbox.querySelector('[data-lightbox-next]');
@@ -253,6 +254,12 @@ function initLightbox() {
     image.alt = source.alt;
     image.width = source.width;
     image.height = source.height;
+
+    if (caption) {
+      const captionText = source.dataset.caption || '';
+      caption.textContent = captionText;
+      caption.hidden = !captionText;
+    }
   }
 
   function openLightbox(trigger) {
