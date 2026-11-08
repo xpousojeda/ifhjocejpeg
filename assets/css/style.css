@@ -396,6 +396,7 @@ body.nav-open {
 
 .photo-frame {
   position: relative;
+  aspect-ratio: 3 / 4;
   margin: 0;
   overflow: hidden;
   background: var(--paper);
@@ -859,8 +860,9 @@ body.nav-open {
 
 /* Responsive real-image treatment */
 .home-collage .photo-frame img {
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
 }
 
 .gallery-card__button {
