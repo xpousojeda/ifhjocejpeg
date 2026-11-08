@@ -148,7 +148,6 @@ button {
   font-size: clamp(0.83rem, 0.78rem + 0.18vw, 1rem);
   font-weight: 600;
   letter-spacing: 0.13em;
-  text-transform: lowercase;
 }
 
 h1,
