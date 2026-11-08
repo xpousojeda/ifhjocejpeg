@@ -336,8 +336,10 @@ body.nav-open {
 }
 
 .home-intro--hero {
-  min-height: calc(100svh - 5.5rem);
-  padding-block: clamp(3.5rem, 8vw, 8rem);
+  min-height: auto;
+  align-items: start;
+  align-content: start;
+  padding-block: clamp(2rem, 4vw, 4.5rem);
 }
 
 .home-intro__copy {
@@ -354,8 +356,8 @@ body.nav-open {
 .home-intro__title {
   max-width: 10ch;
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-  font-size: clamp(3.4rem, 6.6vw, 6.25rem);
-  line-height: 0.9;
+  font-size: clamp(2.9rem, 5vw, 4.75rem);
+  line-height: 0.94;
   text-wrap: balance;
 }
 
