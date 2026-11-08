@@ -360,10 +360,6 @@ body.nav-open {
   text-wrap: balance;
 }
 
-.home-intro__title span {
-  color: var(--moss);
-}
-
 .home-intro__link {
   display: inline-flex;
   min-height: 48px;
@@ -374,6 +370,14 @@ body.nav-open {
 
 .home-intro__copy p:not(.eyebrow) {
   font-size: clamp(1.1rem, 1rem + 0.5vw, 1.45rem);
+}
+
+.home-intro__copy p.home-intro__role {
+  margin: -0.65rem 0 clamp(1.25rem, 2.5vw, 2rem);
+  color: var(--moss);
+  font-size: clamp(1.05rem, 1vw + 0.8rem, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
 }
 
 .home-collage {
