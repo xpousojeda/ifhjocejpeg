@@ -346,15 +346,9 @@ body.nav-open {
   z-index: 2;
 }
 
-.home-intro--hero .eyebrow {
-  margin-bottom: clamp(1rem, 2vw, 1.5rem);
-  font-size: clamp(1.05rem, 1.2vw + 0.75rem, 1.45rem);
-  letter-spacing: 0.2em;
-}
-
 .home-intro__title {
   max-width: 10ch;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: clamp(0.8rem, 1.5vw, 1.25rem);
   font-size: clamp(2.9rem, 5vw, 4.75rem);
   line-height: 0.94;
   text-wrap: balance;
@@ -372,9 +366,17 @@ body.nav-open {
   font-size: clamp(1.1rem, 1rem + 0.5vw, 1.45rem);
 }
 
-.home-intro__copy p.home-intro__role {
-  margin: -0.65rem 0 clamp(1.25rem, 2.5vw, 2rem);
+.home-intro__copy p.home-intro__location {
+  margin: 0 0 0.45rem;
   color: var(--moss);
+  font-size: clamp(1.05rem, 1.2vw + 0.75rem, 1.45rem);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.home-intro__copy p.home-intro__role {
+  margin: 0 0 clamp(1.25rem, 2.5vw, 2rem);
+  color: var(--ink-soft);
   font-size: clamp(1.05rem, 1vw + 0.8rem, 1.4rem);
   font-weight: 600;
   letter-spacing: 0.12em;
