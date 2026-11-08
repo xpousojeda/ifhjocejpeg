@@ -33,96 +33,6 @@ function initNavigation() {
   });
 }
 
-function initCarousel() {
-  const carousel = document.querySelector('[data-carousel]');
-  if (!carousel) return;
-
-  const slides = [...carousel.querySelectorAll('[data-slide]')];
-  const prev = carousel.querySelector('[data-carousel-prev]');
-  const next = carousel.querySelector('[data-carousel-next]');
-  const dotsWrap = carousel.querySelector('[data-carousel-dots]');
-  let current = 0;
-  let timer = null;
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  slides.forEach((_, index) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'hero-carousel__dot';
-    dot.setAttribute('aria-label', `Show featured photo ${index + 1}`);
-    dot.addEventListener('click', () => showSlide(index, true));
-    dotsWrap.appendChild(dot);
-  });
-
-  const dots = [...dotsWrap.children];
-
-  function showSlide(index, restart = false) {
-    current = (index + slides.length) % slides.length;
-    slides.forEach((slide, slideIndex) => {
-      const active = slideIndex === current;
-      slide.classList.toggle('is-active', active);
-      slide.setAttribute('aria-hidden', String(!active));
-    });
-    dots.forEach((dot, dotIndex) => {
-      const active = dotIndex === current;
-      dot.classList.toggle('is-active', active);
-      dot.setAttribute('aria-current', active ? 'true' : 'false');
-    });
-    if (restart) restartTimer();
-  }
-
-  function stopTimer() {
-    if (timer) window.clearInterval(timer);
-    timer = null;
-  }
-
-  function startTimer() {
-    if (prefersReducedMotion || timer) return;
-    timer = window.setInterval(() => showSlide(current + 1), 7000);
-  }
-
-  function restartTimer() {
-    stopTimer();
-    startTimer();
-  }
-
-  prev?.addEventListener('click', () => showSlide(current - 1, true));
-  next?.addEventListener('click', () => showSlide(current + 1, true));
-
-  carousel.addEventListener('mouseenter', stopTimer);
-  carousel.addEventListener('mouseleave', startTimer);
-  carousel.addEventListener('focusin', stopTimer);
-  carousel.addEventListener('focusout', (event) => {
-    if (!carousel.contains(event.relatedTarget)) startTimer();
-  });
-
-  carousel.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault();
-      showSlide(current - 1, true);
-    }
-    if (event.key === 'ArrowRight') {
-      event.preventDefault();
-      showSlide(current + 1, true);
-    }
-  });
-
-  carousel.addEventListener('touchstart', (event) => {
-    touchStartX = event.changedTouches[0].clientX;
-  }, { passive: true });
-
-  carousel.addEventListener('touchend', (event) => {
-    touchEndX = event.changedTouches[0].clientX;
-    const delta = touchEndX - touchStartX;
-    if (Math.abs(delta) < 45) return;
-    showSlide(current + (delta < 0 ? 1 : -1), true);
-  }, { passive: true });
-
-  showSlide(0);
-  startTimer();
-}
-
 function initPortfolioFilters() {
   const gallery = document.querySelector('[data-gallery]');
   const chips = [...document.querySelectorAll('[data-filter]')];
@@ -403,7 +313,6 @@ function initCursorFollowers() {
 }
 
 initNavigation();
-initCarousel();
 initPortfolioFilters();
 initPortfolioMasonry();
 initLightbox();
